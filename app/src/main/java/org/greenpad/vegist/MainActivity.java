@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class MainActivity extends AppCompatActivity{
 
     private TextView mTextMessage;
 
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    mTextMessage.setText(R.string.title_others);
                     return true;
             }
             return false;
@@ -32,14 +35,21 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            JSONObject userJsonContext = new JSONObject(getIntent().getStringExtra("data"));
 
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+            mTextMessage = (TextView) findViewById(R.id.message);
+            BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+            navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+            mTextMessage.setText("Hello, " + userJsonContext.getString("name"));
+        } catch(JSONException r){
+            System.out.print(r);
+        }
+
     }
 
 }
