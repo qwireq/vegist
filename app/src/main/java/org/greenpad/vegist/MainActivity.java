@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity{
 
     private TextView mTextMessage;
+    public CourseDatabase cd;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -27,7 +29,17 @@ public class MainActivity extends AppCompatActivity{
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_others);
+                    try {
+                        if(cd.getData() != null){
+                            mTextMessage.setText(cd.getData().get(0).toString());
+                        }else {
+                            mTextMessage.setText("Not ready!");
+                        }
+                    }catch (Exception e){
+                        mTextMessage.setText(e.toString());
+                    }
+
+
                     return true;
             }
             return false;
@@ -38,6 +50,10 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        CourseRetriever cr = new CourseRetriever(this);
+        cr.execute("foo");
+
         try {
             JSONObject userJsonContext = new JSONObject(getIntent().getStringExtra("data"));
 
@@ -51,5 +67,6 @@ public class MainActivity extends AppCompatActivity{
         }
 
     }
+
 
 }
