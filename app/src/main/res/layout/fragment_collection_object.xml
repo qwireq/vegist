@@ -8,7 +8,9 @@
     <TextView
         android:text="DEMO SPRING SEMESTER 2018"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_margin="10px"
         />
 
 

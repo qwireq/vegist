@@ -68,8 +68,14 @@ public class SemesterFragment extends Fragment{
             View t = LayoutInflater.from(mContext).inflate(R.layout.course_layout, null);
             ViewGroup viewGroup = (ViewGroup) t;
             for (int index = 0; index < ((ViewGroup) viewGroup).getChildCount(); ++index) {
-                TextView nextChild = (TextView) ((ViewGroup) viewGroup).getChildAt(index);
-                nextChild.setText(course);
+                if(index == 0) {
+                    TextView nextChild = (TextView) ((ViewGroup) viewGroup).getChildAt(index);
+                    nextChild.setText("ABBR of " + course);
+                }
+                else{
+                    TextView nextChild = (TextView) ((ViewGroup) viewGroup).getChildAt(index);
+                    nextChild.setText(course);
+                }
             }
             mRootView.addView(t);
         }

@@ -7,14 +7,22 @@
     android:columnCount="1"
     android:padding="10px"
     android:orientation="vertical"
+
+    android:layout_margin="20px"
     >
     <TextView
         android:text="DEMO_CSCI152"
+        android:background="@color/courseBG"
+        android:textColor="@color/White"
         android:layout_row="0"
+        android:layout_width="match_parent"
         />
     <TextView
         android:text="Programming for Scientists and Engineers"
         android:layout_row="1"
+        android:background="@color/courseBG"
+        android:textColor="@color/White"
+        android:layout_width="match_parent"
         />
 
 

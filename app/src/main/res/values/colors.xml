@@ -3,4 +3,6 @@
     <color name="colorPrimary">#267e69</color>
     <color name="colorPrimaryDark">#00E676</color>
     <color name="colorAccent">#f06292</color>
+    <color name="courseBG">#6277f0</color>
+    <color name="White">#ffffff</color>
 </resources>
