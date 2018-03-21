@@ -1,5 +1,6 @@
 package org.greenpad.vegist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -77,6 +78,10 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                         }
                     });
 
+
+                case R.id.timeTable:
+                    Intent it = new Intent(getApplicationContext(), Timetable.class);
+                    startActivity(it);
 
 
                     return true;
