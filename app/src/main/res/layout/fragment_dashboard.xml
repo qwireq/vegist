@@ -11,9 +11,5 @@
         android:text="GoTO Timetable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_dashboard_fragment" />
 
 </FrameLayout>

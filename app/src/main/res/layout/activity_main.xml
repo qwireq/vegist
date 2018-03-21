@@ -46,12 +46,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <fragment
-        android:name="org.greenpad.vegist.DashboardFragment"
+    <FrameLayout
+        android:name="org.greenpad.vegist.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="80dp"
-        android:id="@+id/fragplace"></fragment>
+        android:id="@+id/fragplace"></FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
