@@ -86,7 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     // error
-                                    Log.d("Error.Response", error.toString());
+                                    Log.e("Error.Response", error.toString());
+                                    err.setText("Can't connect to server. Please check internet connection and restart the app");
                                 }
                             }
                     ) {

@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.json.JSONArray;
+import org.greenpad.vegist.dummy.DummyContent;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements CourseFragment.OnListFragmentInteractionListener{
 
     private TextView mTextMessage;
     public CourseDatabase cd;
@@ -23,13 +23,14 @@ public class MainActivity extends AppCompatActivity{
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new HomeFragment()).commit();
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new DashboardFragment()).commit();
                     return true;
                 case R.id.navigation_notifications:
-                    try {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new CourseFragment()).commit();
+                    /*try {
                         if(cd.getData() != null){
                             mTextMessage.setText(cd.getData().get(0).toString());
                         }else {
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity{
                         }
                     }catch (Exception e){
                         mTextMessage.setText(e.toString());
-                    }
+                    }*/
 
 
                     return true;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity{
             mTextMessage = (TextView) findViewById(R.id.message);
             BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
             navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-            mTextMessage.setText("Hello, " + userJsonContext.getString("name"));
+            //mTextMessage.setText("Hello, " + userJsonContext.getString("name"));
         } catch(JSONException r){
             System.out.print(r);
         }
@@ -69,4 +70,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
 }

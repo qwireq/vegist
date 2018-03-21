@@ -2,5 +2,8 @@
     <string name="app_name">Vegist</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_others">Others</string>
+    <string name="title_others">Courses</string>
+
+    <string name="hello_home_fragment">Hello. This is Home fragment</string>
+    <string name="hello_dashboard_fragment">Hello. This is Dashboard fragment</string>
 </resources>
