@@ -1,5 +1,6 @@
 package org.greenpad.vegist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
 
                                         JSONArray filtered = new JSONArray();
                                         for(int i = 0; i<cd.getData().length(); i++){
-                                            if(cd.getData().getJSONObject(i).getString("ABBR").contains(searchText.getText()) ||
-                                            cd.getData().getJSONObject(i).getString("TITLE").contains(searchText.getText())){
+                                            if(cd.getData().getJSONObject(i).getString("ABBR").toLowerCase().contains(searchText.getText().toString().toLowerCase()) ||
+                                            cd.getData().getJSONObject(i).getString("TITLE").toLowerCase().contains(searchText.getText().toString().toLowerCase())){
                                                 filtered.put(cd.getData().getJSONObject(i));
                                             }
                                             if(filtered.length() > 300)break;
@@ -117,7 +118,9 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
     @Override
     public void onListFragmentInteraction(JSONObject item) {
         try {
-            Log.e("CLICKED", item.getString("TITLE"));
+            Intent c_intent = new Intent(this, CourseActivity.class);
+            c_intent.putExtra("data", item.toString());
+            startActivity(c_intent);
         }catch (Exception c){
             Log.e("CLERR", c.toString());
         }
