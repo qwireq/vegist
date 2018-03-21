@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.greenpad.vegist.dummy.DummyContent;
@@ -12,10 +16,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.concurrent.ExecutionException;
+
 public class MainActivity extends AppCompatActivity implements CourseFragment.OnListFragmentInteractionListener{
 
     private TextView mTextMessage;
     public CourseDatabase cd;
+    private EditText searchText;
+    private Button search;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -24,26 +32,41 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    search.setVisibility(View.GONE);
+                    searchText.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new HomeFragment()).commit();
                     return true;
                 case R.id.navigation_dashboard:
+                    search.setVisibility(View.GONE);
+                    searchText.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new DashboardFragment()).commit();
                     return true;
+                //If Courses Clicked
                 case R.id.navigation_notifications:
-
-                    try {
-                        if(cd.getData() != null){
-                            Bundle bundle = new Bundle();
-                            bundle.putString("data", cd.getData().toString());
-                            CourseFragment cf = new CourseFragment();
-                            cf.setArguments(bundle);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, cf).commit();
-                        }else {
-                            mTextMessage.setText("Not ready!");
+                    search.setVisibility(View.VISIBLE);
+                    searchText.setVisibility(View.VISIBLE);
+                    search.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(searchText.getText() != null){
+                                try {
+                                    if(cd.getData() != null){
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("data", cd.getData().toString());
+                                        bundle.putString("key", searchText.getText().toString());
+                                        CourseFragment cf = new CourseFragment();
+                                        cf.setArguments(bundle);
+                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, cf).commit();
+                                    }else {
+                                        mTextMessage.setText("Not ready!");
+                                    }
+                                }catch (Exception e){
+                                    mTextMessage.setText(e.toString());
+                                }
+                            }
                         }
-                    }catch (Exception e){
-                        mTextMessage.setText(e.toString());
-                    }
+                    });
+
 
 
                     return true;
@@ -56,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        search = findViewById(R.id.filter);
+        searchText = findViewById(R.id.filtertext);
+        searchText.bringToFront();
+        searchText.setVisibility(View.GONE);
+        search.setVisibility(View.GONE);
 
         CourseRetriever cr = new CourseRetriever(this);
         cr.execute("foo");
@@ -77,6 +106,11 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
 
     @Override
     public void onListFragmentInteraction(JSONObject item) {
+        try {
+            Log.e("CLICKED", item.getString("TITLE"));
+        }catch (Exception c){
+            Log.e("CLERR", c.toString());
+        }
 
     }
 }

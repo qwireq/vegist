@@ -28,8 +28,10 @@ public class CourseFragment extends Fragment {
 
 
     private static final String ARG_PARAM1 = "data";
+    private static final String ARG_PARAM2 = "key";
 
     private JSONArray data;
+    private String key;
 
 
     private int mColumnCount = 1;
@@ -47,12 +49,24 @@ public class CourseFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             String cd = (String) getArguments().get(ARG_PARAM1);
+            key = getArguments().getString("key");
             try {
-                Log.e("DATA", cd);
                 data = new JSONArray(cd);
+
+                JSONArray filtered = new JSONArray();
+
+                for(int i =0; i<data.length(); i++){
+                    if(data.getJSONObject(i).getString("ABBR").contains(key) || data.getJSONObject(i).getString("TITLE").contains(key)){
+                        filtered.put(data.getJSONObject(i));
+                    }
+                }
+                data = filtered;
+
             }catch (Exception e){
                 Log.e("CF:data", e.toString());
             }
+
+
 
         }
     }
