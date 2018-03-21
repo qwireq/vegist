@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import org.greenpad.vegist.dummy.DummyContent;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,16 +30,20 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new DashboardFragment()).commit();
                     return true;
                 case R.id.navigation_notifications:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new CourseFragment()).commit();
-                    /*try {
+
+                    try {
                         if(cd.getData() != null){
-                            mTextMessage.setText(cd.getData().get(0).toString());
+                            Bundle bundle = new Bundle();
+                            bundle.putString("data", cd.getData().toString());
+                            CourseFragment cf = new CourseFragment();
+                            cf.setArguments(bundle);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, cf).commit();
                         }else {
                             mTextMessage.setText("Not ready!");
                         }
                     }catch (Exception e){
                         mTextMessage.setText(e.toString());
-                    }*/
+                    }
 
 
                     return true;
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
 
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(JSONObject item) {
 
     }
 }

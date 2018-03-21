@@ -6,12 +6,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.greenpad.vegist.dummy.DummyContent;
 import org.greenpad.vegist.dummy.DummyContent.DummyItem;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -24,11 +27,34 @@ import java.util.List;
 public class CourseFragment extends Fragment {
 
 
+    private static final String ARG_PARAM1 = "data";
+
+    private JSONArray data;
+
+
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
 
     public CourseFragment() {
+
+    }
+
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            String cd = (String) getArguments().get(ARG_PARAM1);
+            try {
+                Log.e("DATA", cd);
+                data = new JSONArray(cd);
+            }catch (Exception e){
+                Log.e("CF:data", e.toString());
+            }
+
+        }
     }
 
 
@@ -47,7 +73,7 @@ public class CourseFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new CourseRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new CourseRecyclerViewAdapter(data, mListener));
         }
         return view;
     }
@@ -83,6 +109,6 @@ public class CourseFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(JSONObject item);
     }
 }

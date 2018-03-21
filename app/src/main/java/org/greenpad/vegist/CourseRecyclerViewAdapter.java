@@ -1,6 +1,7 @@
 package org.greenpad.vegist;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.widget.TextView;
 
 import org.greenpad.vegist.CourseFragment.OnListFragmentInteractionListener;
 import org.greenpad.vegist.dummy.DummyContent.DummyItem;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -18,10 +21,10 @@ import java.util.List;
  */
 public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final JSONArray mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public CourseRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public CourseRecyclerViewAdapter(JSONArray items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -35,37 +38,41 @@ public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecycl
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        try {
+            holder.mItem = mValues.getJSONObject(position);
+            holder.mContentView.setText(mValues.getJSONObject(position).getString("ABBR") + " - " + mValues.getJSONObject(position).getString("TITLE"));
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (null != mListener) {
+                        // Notify the active callbacks interface (the activity, if the
+                        // fragment is attached to one) that an item has been selected.
+                        mListener.onListFragmentInteraction(holder.mItem);
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e){
+            Log.e("JSON", e.toString());
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mValues.length();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
+        //public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public JSONObject mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
+            //mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 

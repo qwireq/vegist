@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                                     // error
                                     Log.e("Error.Response", error.toString());
                                     err.setText("Can't connect to server. Please check internet connection and restart the app");
+                                    sign_in.setEnabled(true);
                                 }
                             }
                     ) {
