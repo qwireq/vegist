@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.greenpad.vegist.dummy.DummyContent;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +52,17 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                                 try {
                                     if(cd.getData() != null){
                                         Bundle bundle = new Bundle();
-                                        bundle.putString("data", cd.getData().toString());
+
+                                        JSONArray filtered = new JSONArray();
+                                        for(int i = 0; i<cd.getData().length(); i++){
+                                            if(cd.getData().getJSONObject(i).getString("ABBR").contains(searchText.getText()) ||
+                                            cd.getData().getJSONObject(i).getString("TITLE").contains(searchText.getText())){
+                                                filtered.put(cd.getData().getJSONObject(i));
+                                            }
+                                            if(filtered.length() > 300)break;
+                                        }
+
+                                        bundle.putString("data", filtered.toString());
                                         bundle.putString("key", searchText.getText().toString());
                                         CourseFragment cf = new CourseFragment();
                                         cf.setArguments(bundle);

@@ -50,6 +50,7 @@
         android:name="org.greenpad.vegist.DashboardFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="80dp"
         android:id="@+id/fragplace"></fragment>
 
     <android.support.design.widget.BottomNavigationView
