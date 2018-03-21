@@ -79,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     });
 
 
+                case R.id.timeTable:
+                    Intent it = new Intent(getApplicationContext(), Timetable.class);
+                    startActivity(it);
+
 
                     return true;
             }

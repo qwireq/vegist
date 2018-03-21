@@ -24,6 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CourseActivity"></activity>
+
+        <activity android:name=".Timetable"></activity>
     </application>
 
 </manifest>
