@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,9 +42,13 @@ public class LoginActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
+        final AlphaAnimation anim = new AlphaAnimation(1F, 0F);
+        anim.setDuration(200);
+
         this.sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sign_in.startAnimation(anim);
                 if((email.getText().length() > 0) && (pword.getText().length() > 0)){
 
                     sign_in.setEnabled(false);

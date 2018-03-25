@@ -1,6 +1,7 @@
 package org.greenpad.vegist;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
     public CourseDatabase cd;
     private EditText searchText;
     private Button search;
+    private FrameLayout fragplace;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -44,11 +48,25 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     return true;
                 //If Courses Clicked
                 case R.id.navigation_notifications:
+                    fragplace.setVisibility(View.GONE);
+                    mTextMessage.setVisibility(View.GONE);
                     search.setVisibility(View.VISIBLE);
                     searchText.setVisibility(View.VISIBLE);
+
+                    searchText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        @Override
+                        public void onFocusChange(View view, boolean b) {
+                            searchText.setText("");
+                        }
+                    });
+
                     search.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            AlphaAnimation anim = new AlphaAnimation(1F, 0F);
+                            anim.setDuration(200);
+                            anim.setBackgroundColor(Color.parseColor("#cccccc"));
+                            search.startAnimation(anim);
                             if(searchText.getText() != null){
                                 try {
                                     if(cd.getData() != null){
@@ -68,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                                         CourseFragment cf = new CourseFragment();
                                         cf.setArguments(bundle);
                                         getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, cf).commit();
+                                        fragplace.setVisibility(View.VISIBLE);
                                     }else {
                                         mTextMessage.setText("Not ready!");
                                     }
@@ -90,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
         setContentView(R.layout.activity_main);
 
         search = findViewById(R.id.filter);
+        fragplace = findViewById(R.id.fragplace);
         searchText = findViewById(R.id.filtertext);
         searchText.bringToFront();
         searchText.setVisibility(View.GONE);
