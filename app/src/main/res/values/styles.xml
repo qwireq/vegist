@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorBackgroundPrimaryLight</item>
         <item name="colorPrimaryDark">@color/colorBackgroundHeaderLight</item>
-        <item name="colorAccent">@color/colorErrorTextLight</item>
+        <item name="colorAccent">@color/colorTextLight</item>
     </style>
 
 </resources>
