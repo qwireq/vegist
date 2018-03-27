@@ -5,4 +5,18 @@
     <color name="colorAccent">#f06292</color>
     <color name="courseBG">#6277f0</color>
     <color name="White">#ffffff</color>
+
+    <color name="colorBackgroundPrimaryLight">#FFF</color>
+    <color name="colorBackgroundHeaderLight">#8a8a8a</color>
+    <color name="colorHeaderTextLight">#0062bd</color>
+    <color name="colorTextLight">#000</color>
+    <color name="colorBackgroundSecondLight">#006699</color>
+    <color name="colorBlockPrimaryLight">#c4c6cc</color>
+    <color name="colorSmallBlockFirstLight">#e1e8ee</color>
+    <color name="colorSmallBlockSecondLight">#FFF</color>
+
+    <color name="colorFooterBackgroundLight">#8a8a8a</color>
+    <color name="colorFooterTextLight">#fff</color>
+
+    <color name="colorErrorTextLight">#8c2e0b</color>
 </resources>
