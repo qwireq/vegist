@@ -33,11 +33,26 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        //Button to launch anounce activity
+        Button a_button = (Button) vg.getChildAt(1);
+        a_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                goToAnounce();
+            }
+        });
+
         return z;
     }
     public void goToTimetable(){
         Intent it = new Intent(getContext(), Timetable.class);
         startActivity(it);
     }
+
+    public void goToAnounce(){
+        Intent it = new Intent(getContext(), AnounceActivity.class);
+        startActivity(it);
+    }
+
 
 }

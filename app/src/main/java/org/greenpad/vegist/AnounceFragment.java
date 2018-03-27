@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,49 +23,43 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class CourseFragment extends Fragment {
+public class AnounceFragment extends Fragment {
 
 
     private static final String ARG_PARAM1 = "data";
-
     private JSONArray data;
-
-
 
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
-
-    public CourseFragment() {
-
+    /**
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
+     */
+    public AnounceFragment() {
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             String cd = (String) getArguments().get(ARG_PARAM1);
             try {
                 data = new JSONArray(cd);
-                Log.e("LAST", data.getJSONObject(data.length()-1).getString("TITLE"));
+                Log.e("LAST", data.getJSONObject(data.length()-1).getString("title"));
 
             }catch (Exception e){
                 Log.e("CF:data", e.toString());
             }
 
-
-
         }
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_course_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_anouncement_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -75,7 +70,7 @@ public class CourseFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new CourseRecyclerViewAdapter(data, mListener));
+            recyclerView.setAdapter(new MyAnounceRecyclerViewAdapter(data, mListener));
         }
         return view;
     }
@@ -91,7 +86,6 @@ public class CourseFragment extends Fragment {
                     + " must implement OnListFragmentInteractionListener");
         }
     }
-
 
     @Override
     public void onDetach() {
@@ -110,6 +104,7 @@ public class CourseFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(JSONObject item);
+        // TODO: Update argument type and name
+        void onListFragmentInteraction(JSONObject object);
     }
 }

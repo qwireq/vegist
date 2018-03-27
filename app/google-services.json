@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "571161327641",
+    "firebase_url": "https://vegist-app.firebaseio.com",
+    "project_id": "vegist-app",
+    "storage_bucket": "vegist-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571161327641:android:9bcafd6d5a1bb122",
+        "android_client_info": {
+          "package_name": "org.greenpad.vegist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571161327641-s1p393efomd976ajdkd65fbvlrue2qgi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.greenpad.vegist",
+            "certificate_hash": "19b1a7c0a66b4291f98060937134fbdd80e49696"
+          }
+        },
+        {
+          "client_id": "571161327641-lgnf2pflqn17k6m0qriu7glrk4o1chos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6iZ4VNdcAF7xu2aofGm-MYBLMuH0rkuA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571161327641-lgnf2pflqn17k6m0qriu7glrk4o1chos.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

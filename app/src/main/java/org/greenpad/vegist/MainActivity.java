@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
     private EditText searchText;
     private Button search;
     private FrameLayout fragplace;
+    private final CourseRetriever cr = new CourseRetriever(this);
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -37,14 +38,18 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    fragplace.setVisibility(View.VISIBLE);
                     search.setVisibility(View.GONE);
                     searchText.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new HomeFragment()).commit();
+                    fragplace.bringToFront();
                     return true;
                 case R.id.navigation_dashboard:
+                    fragplace.setVisibility(View.VISIBLE);
                     search.setVisibility(View.GONE);
                     searchText.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new DashboardFragment()).commit();
+                    fragplace.bringToFront();
                     return true;
                 //If Courses Clicked
                 case R.id.navigation_notifications:
@@ -52,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     mTextMessage.setVisibility(View.GONE);
                     search.setVisibility(View.VISIBLE);
                     searchText.setVisibility(View.VISIBLE);
+                    search.bringToFront();
+                    searchText.bringToFront();
 
                     searchText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                         @Override
@@ -115,7 +122,10 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
         searchText.setVisibility(View.GONE);
         search.setVisibility(View.GONE);
 
-        CourseRetriever cr = new CourseRetriever(this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new DashboardFragment()).commit();
+        fragplace.bringToFront();
+
+        Log.e("CR", "Retrieveing Data");
         cr.execute("foo");
 
         try {
@@ -132,6 +142,18 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+
+        if(cr.getStatus().toString() != "RUNNING"){
+            Log.e("CR", cr.getStatus().toString());
+            //TODO cr.execute("foo");
+        }
+
+    }
 
     @Override
     public void onListFragmentInteraction(JSONObject item) {
