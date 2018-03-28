@@ -1,4 +1,4 @@
-package org.greenpad.vegist;
+package org.greenpad.vegist.anouncements;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import org.greenpad.vegist.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class AnounceActivity extends AppCompatActivity implements AnounceFragment.OnListFragmentInteractionListener{
+public class AnounceActivity extends AppCompatActivity implements AnounceFragment.OnListFragmentInteractionListener {
 
     private TextView txt;
     private AnounceRetriever ar;

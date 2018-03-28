@@ -1,6 +1,5 @@
-package org.greenpad.vegist;
+package org.greenpad.vegist.anouncements;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;

@@ -24,9 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CourseActivity" />
+        <activity android:name=".courses.CourseActivity" />
         <activity android:name=".Timetable" />
-        <activity android:name=".AnounceActivity"></activity>
+        <activity android:name=".anouncements.AnounceActivity"></activity>
     </application>
 
 </manifest>

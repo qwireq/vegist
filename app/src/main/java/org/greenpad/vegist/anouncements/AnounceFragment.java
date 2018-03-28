@@ -1,4 +1,4 @@
-package org.greenpad.vegist;
+package org.greenpad.vegist.anouncements;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,10 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import org.greenpad.vegist.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.

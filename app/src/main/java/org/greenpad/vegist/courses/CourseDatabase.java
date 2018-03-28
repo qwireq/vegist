@@ -1,4 +1,4 @@
-package org.greenpad.vegist;
+package org.greenpad.vegist.courses;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

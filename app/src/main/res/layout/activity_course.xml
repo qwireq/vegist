@@ -10,7 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="org.greenpad.vegist.CourseActivity"
+        tools:context="org.greenpad.vegist.courses.CourseActivity"
         android:orientation="vertical">
 
 

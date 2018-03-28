@@ -1,10 +1,11 @@
-package org.greenpad.vegist;
+package org.greenpad.vegist.courses;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import org.greenpad.vegist.R;
 import org.json.JSONObject;
 
 public class CourseActivity extends AppCompatActivity {

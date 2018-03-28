@@ -1,4 +1,4 @@
-package org.greenpad.vegist;
+package org.greenpad.vegist.courses;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -7,17 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.greenpad.vegist.AnounceFragment.OnListFragmentInteractionListener;
+import org.greenpad.vegist.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class MyAnounceRecyclerViewAdapter extends RecyclerView.Adapter<MyAnounceRecyclerViewAdapter.ViewHolder> {
+public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecyclerViewAdapter.ViewHolder> {
 
     private final JSONArray mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final CourseFragment.OnListFragmentInteractionListener mListener;
 
-    public MyAnounceRecyclerViewAdapter(JSONArray items, OnListFragmentInteractionListener listener) {
+    public CourseRecyclerViewAdapter(JSONArray items, CourseFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -25,16 +25,15 @@ public class MyAnounceRecyclerViewAdapter extends RecyclerView.Adapter<MyAnounce
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_anouncement, parent, false);
+                .inflate(R.layout.fragment_course, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        try{
+        try {
             holder.mItem = mValues.getJSONObject(position);
-            holder.mIdView.setText(mValues.getJSONObject(position).getString("date"));
-            holder.mContentView.setText(mValues.getJSONObject(position).getString("title"));
+            holder.mContentView.setText(mValues.getJSONObject(position).getString("ABBR") + " - " + mValues.getJSONObject(position).getString("TITLE"));
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -46,8 +45,8 @@ public class MyAnounceRecyclerViewAdapter extends RecyclerView.Adapter<MyAnounce
                     }
                 }
             });
-        }catch (Exception e){
-            Log.e("MyANON", e.toString());
+        } catch (Exception e){
+            Log.e("JSON", e.toString());
         }
 
     }
@@ -59,14 +58,14 @@ public class MyAnounceRecyclerViewAdapter extends RecyclerView.Adapter<MyAnounce
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
+        //public final TextView mIdView;
         public final TextView mContentView;
         public JSONObject mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
+            //mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 
