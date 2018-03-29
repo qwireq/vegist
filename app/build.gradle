@@ -33,4 +33,9 @@ dependencies {
     // https://mvnrepository.com/artifact/com.mcxiaoke.volley/library
     compile group: 'com.mcxiaoke.volley', name: 'library', version: '1.0.19'
     compile 'com.github.traex.expandablelayout:library:1.2.2'
+
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.11.2'
+    // https://mvnrepository.com/artifact/com.mcxiaoke.volley/library
+    compile 'com.google.firebase:firebase-core:12.0.0'
+
 }

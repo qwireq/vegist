@@ -4,19 +4,22 @@
     android:layout_height="match_parent"
     tools:context="org.greenpad.vegist.DashboardFragment"
     android:background="#ffffff"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_gravity="fill">
 
     <!-- TODO: Update blank fragment layout -->
     <Button
+        android:layout_marginTop="200px"
         android:text="GoTO Timetable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/a_button"
+
         android:text="GoTO Anouncements"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="150dp"/>
 
 </FrameLayout>

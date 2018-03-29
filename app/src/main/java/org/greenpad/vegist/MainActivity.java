@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     search.setVisibility(View.GONE);
                     searchText.setVisibility(View.GONE);
 
-                    while(cd == null);
+                    //while(cd == null);
                     Bundle bundle = new Bundle();
                     JSONArray js = cd.getData();
                     String s="";
