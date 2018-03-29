@@ -9,7 +9,6 @@
 
     <!-- TODO: Update blank fragment layout -->
     <Button
-        android:layout_marginTop="200px"
         android:text="GoTO Timetable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -20,6 +19,6 @@
         android:text="GoTO Anouncements"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="50dp"/>
 
 </FrameLayout>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.greenpad.vegist.anouncements.AnounceActivity;
 import org.json.JSONArray;
 
 
@@ -37,6 +38,14 @@ public class DashboardFragment extends Fragment {
                 goToTimetable();
             }
         });
+        //Button to launch anounce activity
+        Button a_button = (Button) vg.getChildAt(1);
+        a_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                goToAnounce();
+            }
+        });
 
         return z;
     }
@@ -45,5 +54,8 @@ public class DashboardFragment extends Fragment {
         it.putExtra("data", data);
         startActivity(it);
     }
-
+    public void goToAnounce(){
+        Intent it = new Intent(getContext(), AnounceActivity.class);
+        startActivity(it);
+    }
 }
