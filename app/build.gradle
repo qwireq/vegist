@@ -38,4 +38,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.mcxiaoke.volley/library
     compile 'com.google.firebase:firebase-core:12.0.0'
 
+    //loadingView
+    compile 'io.saeid:fab-loading:1.0.0'
+
 }

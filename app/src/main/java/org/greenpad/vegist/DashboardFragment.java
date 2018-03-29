@@ -30,8 +30,8 @@ public class DashboardFragment extends Fragment {
         View z = inflater.inflate(R.layout.fragment_dashboard, container, false);
         data = getArguments().getString("data");
         Log.d("DashboardFragment", " data: "+data);
-        ViewGroup vg = (ViewGroup) z;
-        Button b = (Button) vg.getChildAt(0);
+
+        Button b = z.findViewById(R.id.timetableButton);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +39,7 @@ public class DashboardFragment extends Fragment {
             }
         });
         //Button to launch anounce activity
-        Button a_button = (Button) vg.getChildAt(1);
+        Button a_button = z.findViewById(R.id.a_button);
         a_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -51,7 +51,7 @@ public class DashboardFragment extends Fragment {
     }
     public void goToTimetable(){
         Intent it = new Intent(getContext(), Timetable.class);
-        it.putExtra("data", data);
+        //it.putExtra("data", data);
         startActivity(it);
     }
     public void goToAnounce(){

@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="org.greenpad.vegist.Timetable">
 
     <android.support.v7.widget.Toolbar
+        android:layout_weight="10"
+        android:layout_gravity="top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timetableToolbar"
@@ -19,23 +22,29 @@
         >
 
     </android.support.v7.widget.Toolbar>
+    <io.saeid.fabloading.LoadingView
+        android:id="@+id/loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+
+        android:scaleX="6"
+        android:scaleY="6"
+        android:translationY="250dp"
+        app:mfl_duration="500"
+        app:mfl_onclickLoading="true"
+        app:mfl_repeat="20" />
     <android.support.v4.view.ViewPager
+        android:visibility="invisible"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="90"
 
         >
 
     </android.support.v4.view.ViewPager>
-    <!--
-    <ListView
-        android:id="@+id/listView"
-        xmlns:expandable="http://schemas.android.com/apk/res-auto"
-        android:windowSoftInputMode="adjustPan"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
-        -->
 
 </LinearLayout>

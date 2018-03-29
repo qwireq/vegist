@@ -53,19 +53,12 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     searchText.setVisibility(View.GONE);
                     fr.setVisibility(View.VISIBLE);
 
-                    //while(cd == null);
+                    JSONArray array = cd.getData();
+
+
                     Bundle bundle = new Bundle();
-                    JSONArray js = cd.getData();
-                    String s="";
-                    for(int i = 0; i < js.length(); i++) {
-                        try {
-                            s += js.getJSONObject(i).getString("TITLE");
-                            s += "#";
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    bundle.putString("data", s);
+
+                    bundle.putString("data", array.toString());
                     // set Fragmentclass Arguments
                     DashboardFragment dashboardFragment = new DashboardFragment();
                     dashboardFragment.setArguments(bundle);
