@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 
@@ -28,10 +29,12 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements CourseFragment.OnListFragmentInteractionListener{
 
-    private TextView mTextMessage;
+    public TextView mTextMessage;
     public CourseDatabase cd;
     private EditText searchText;
     private Button search;
+    public FrameLayout fr;
+    public BottomNavigationView bn;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,10 +46,12 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     search.setVisibility(View.GONE);
                     searchText.setVisibility(View.GONE);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new HomeFragment()).commit();
+                    fr.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_dashboard:
                     search.setVisibility(View.GONE);
                     searchText.setVisibility(View.GONE);
+                    fr.setVisibility(View.VISIBLE);
 
                     //while(cd == null);
                     Bundle bundle = new Bundle();
@@ -70,8 +75,19 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     return true;
                 //If Courses Clicked
                 case R.id.navigation_notifications:
+                    mTextMessage.setVisibility(View.GONE);
                     search.setVisibility(View.VISIBLE);
                     searchText.setVisibility(View.VISIBLE);
+
+                    fr.setVisibility(View.GONE);
+
+                    searchText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        @Override
+                        public void onFocusChange(View v, boolean hasFocus) {
+                            searchText.setText("");
+                        }
+                    });
+
                     search.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -94,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                                         CourseFragment cf = new CourseFragment();
                                         cf.setArguments(bundle);
                                         getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, cf).commit();
+                                        fr.setVisibility(View.VISIBLE);
                                     }else {
                                         mTextMessage.setText("Not ready!");
                                     }
@@ -115,19 +132,32 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fr = findViewById(R.id.fragplace);
+        bn = findViewById(R.id.navigation);
+        mTextMessage = (TextView) findViewById(R.id.message);
+
         search = findViewById(R.id.filter);
         searchText = findViewById(R.id.filtertext);
         searchText.bringToFront();
         searchText.setVisibility(View.GONE);
         search.setVisibility(View.GONE);
 
+        bn.setVisibility(View.GONE);
+        fr.setVisibility(View.GONE);
+        mTextMessage.setVisibility(View.VISIBLE);
+
         CourseRetriever cr = new CourseRetriever(this);
         cr.execute("foo");
+
+
+
+
+
 
         try {
             JSONObject userJsonContext = new JSONObject(getIntent().getStringExtra("data"));
 
-            mTextMessage = (TextView) findViewById(R.id.message);
+
             BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
             navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
             //mTextMessage.setText("Hello, " + userJsonContext.getString("name"));

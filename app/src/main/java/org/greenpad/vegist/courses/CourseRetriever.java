@@ -2,6 +2,7 @@ package org.greenpad.vegist.courses;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -82,6 +83,11 @@ public class CourseRetriever extends AsyncTask<String, String, JSONArray> {
     }
 
     protected void onPostExecute(JSONArray data){
+
         myContext.cd = new CourseDatabase(data);
+        myContext.fr.setVisibility(View.VISIBLE);
+        myContext.bn.setVisibility(View.VISIBLE);
+        myContext.mTextMessage.setVisibility(View.GONE);
+
     }
 }
