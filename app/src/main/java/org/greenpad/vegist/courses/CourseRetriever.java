@@ -30,8 +30,6 @@ public class CourseRetriever extends AsyncTask<String, String, JSONArray> {
 
     @Override
     protected JSONArray doInBackground(String... strings) {
-
-
         RequestQueue requestQueue = Volley.newRequestQueue(myContext);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://reg-fake-api.herokuapp.com/courses",

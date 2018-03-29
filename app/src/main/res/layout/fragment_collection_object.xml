@@ -5,13 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <TextView
-        android:text="DEMO SPRING SEMESTER 2018"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimaryDark"
-        android:layout_margin="10px"
-        />
+   <ListView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"></ListView>
 
 
 </LinearLayout>
