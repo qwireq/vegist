@@ -50,14 +50,16 @@ public class Timetable extends AppCompatActivity {
         Log.d("Timetable", String.valueOf(coursesList.size()));
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
-        //mCollectionPagerAdapter =
-         //       new PagerAdapter( getSupportFragmentManager(), 8);
-        //mViewPager = (ViewPager) findViewById(R.id.pager);
-        //mViewPager.setAdapter(mCollectionPagerAdapter);
+        mCollectionPagerAdapter =
+                new PagerAdapter( getSupportFragmentManager(), 12, coursesList);
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(mCollectionPagerAdapter);
         mToolbar = findViewById(R.id.timetableToolbar);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mToolbar.setTitle("Timetable");
         }
+        /*
         ListView = findViewById(R.id.listView);
 
         adapter = new TimetableListViewAdapter(this, coursesList);
@@ -65,6 +67,7 @@ public class Timetable extends AppCompatActivity {
         // создаем адаптер
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, coursesList);
         ListView.setAdapter(adapter);
+        */
 
 
 

@@ -19,15 +19,19 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
     List <SemesterFragment> mFragmentsList;
     private String TAG = "PagerAdapter";
-    public PagerAdapter(FragmentManager fm, int n) {
+    ArrayList<String> coursesList;
+
+    public PagerAdapter(FragmentManager fm, int n,ArrayList<String> courseArrayList) {
         super(fm);
         mNumOfTabs = n;
         mFragmentsList = new ArrayList<>();
+        coursesList = courseArrayList;
         for(int i = 0; i < n; i++){
             SemesterFragment sf = new SemesterFragment();
             Bundle args = new Bundle();
             sf.setArguments(args);
             sf.setNumOfSemester(i);
+            sf.setCoursesList(coursesList);
             mFragmentsList.add(sf);
         }
     }
@@ -48,6 +52,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         Log.d(TAG, "Viewgroup " + f + " is " + viewGroup);
         //TextView childAt = (TextView) ((ViewGroup) viewGroup).getChildAt(0);
         //childAt.setText("Semester " + i);
+
+    }
+    public void setCourses(ArrayList<String> courses){
+
 
     }
 }

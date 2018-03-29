@@ -19,7 +19,7 @@
         >
 
     </android.support.v7.widget.Toolbar>
-    <!--<android.support.v4.view.ViewPager
+    <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"
         android:layout_width="match_parent"
@@ -28,12 +28,14 @@
         >
 
     </android.support.v4.view.ViewPager>
-    -->
+    <!--
     <ListView
         android:id="@+id/listView"
         xmlns:expandable="http://schemas.android.com/apk/res-auto"
         android:windowSoftInputMode="adjustPan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+        -->
 
 </LinearLayout>

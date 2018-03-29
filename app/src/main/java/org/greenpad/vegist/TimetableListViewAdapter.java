@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dias Issa on 23.03.2018.
@@ -25,6 +26,7 @@ public class TimetableListViewAdapter extends BaseAdapter {
     private ArrayList<String> courseArrayList;
     private ArrayList<String> completeCoursesList;
     private ArrayAdapter<String> adapter;
+    private List<AutoCompleteTextView> completeTextViewList;
     private String TAG = "TimetableAdapter";
 
     public TimetableListViewAdapter(Context ctx, ArrayList<String> courseArrayList) {
@@ -32,8 +34,9 @@ public class TimetableListViewAdapter extends BaseAdapter {
         this.lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.courseArrayList = courseArrayList;
         completeCoursesList = new ArrayList<>();
-        for(int i = 0; i < 5; i++)completeCoursesList.add("");
+        for(int i = 0; i < 6; i++)completeCoursesList.add("");
         adapter = new ArrayAdapter<String>(ctx, android.R.layout.select_dialog_singlechoice, courseArrayList);
+        completeTextViewList = new ArrayList<>();
     }
 
     @Override
@@ -43,6 +46,8 @@ public class TimetableListViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
+
+
         return completeCoursesList.get(position);
     }
 
@@ -66,6 +71,7 @@ public class TimetableListViewAdapter extends BaseAdapter {
         acTextView.setThreshold(1);
         //Set the adapter
         acTextView.setAdapter(adapter);
+
 
         Log.d(TAG, "acTextView is "+acTextView);
         return view;
