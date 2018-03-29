@@ -2,6 +2,7 @@ package org.greenpad.vegist;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,11 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Dias Issa on 21.03.2018.
@@ -47,7 +52,20 @@ public class SemesterFragment extends Fragment{
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimetableListViewAdapter listViewAdapter = (TimetableListViewAdapter) listView.getAdapter();
+
+                List<String> selectedCourses = new ArrayList<>();
+                for (int i = 0; i < adapter.getNumOfLessons(); i++){
+                    AutoCompleteTextView ac = (AutoCompleteTextView) getViewByPosition(i, listView);
+                    selectedCourses.add(ac.getText().toString());
+                }
+                Set<String> coursesSet = new HashSet<>();
+                coursesSet.addAll(selectedCourses);
+                Log.d(TAG, "Saved courses:" + selectedCourses);
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                editor.putStringSet("Semester"+numOfSemester, coursesSet);
+                editor.commit();
 
             }
         });
@@ -100,6 +118,17 @@ public class SemesterFragment extends Fragment{
                 }
             }
             mRootView.addView(t);
+        }
+    }
+    public View getViewByPosition(int pos, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
+            return listView.getAdapter().getView(pos, null, listView);
+        } else {
+            final int childIndex = pos - firstListItemPosition;
+            return listView.getChildAt(childIndex);
         }
     }
 

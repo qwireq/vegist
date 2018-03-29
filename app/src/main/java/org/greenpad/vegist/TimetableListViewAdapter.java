@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
@@ -28,13 +29,14 @@ public class TimetableListViewAdapter extends BaseAdapter {
     private ArrayAdapter<String> adapter;
     private List<AutoCompleteTextView> completeTextViewList;
     private String TAG = "TimetableAdapter";
+    private int numOfLessons = 5;
 
     public TimetableListViewAdapter(Context ctx, ArrayList<String> courseArrayList) {
         this.ctx = ctx;
         this.lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.courseArrayList = courseArrayList;
         completeCoursesList = new ArrayList<>();
-        for(int i = 0; i < 6; i++)completeCoursesList.add("");
+        for(int i = 0; i < numOfLessons; i++)completeCoursesList.add("");
         adapter = new ArrayAdapter<String>(ctx, android.R.layout.select_dialog_singlechoice, courseArrayList);
         completeTextViewList = new ArrayList<>();
     }
@@ -63,17 +65,20 @@ public class TimetableListViewAdapter extends BaseAdapter {
         if (view == null) {
             Log.d(TAG, "View is null!!!!");
             view = lInflater.inflate(R.layout.timetable_item, parent, false);
+            //Find TextView control
+            final AutoCompleteTextView acTextView = (AutoCompleteTextView) view;
+            acTextView.setThreshold(1);
+            //Set the adapter
+            acTextView.setAdapter(adapter);
+            acTextView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            completeTextViewList.add(acTextView);
         }
 
-        //Find TextView control
-        ViewGroup vg = (ViewGroup) view;
-        final AutoCompleteTextView acTextView = (AutoCompleteTextView) vg.getChildAt(0);
-        acTextView.setThreshold(1);
-        //Set the adapter
-        acTextView.setAdapter(adapter);
 
-
-        Log.d(TAG, "acTextView is "+acTextView);
         return view;
+    }
+
+    public int getNumOfLessons() {
+        return numOfLessons;
     }
 }

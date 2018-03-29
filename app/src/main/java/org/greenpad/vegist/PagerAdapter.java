@@ -54,8 +54,4 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         //childAt.setText("Semester " + i);
 
     }
-    public void setCourses(ArrayList<String> courses){
-
-
-    }
 }
