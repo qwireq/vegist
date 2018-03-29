@@ -17,6 +17,7 @@ import org.json.JSONArray;
 
 public class DashboardFragment extends Fragment {
     private String data;
+
     public DashboardFragment() {
         // Required empty public constructor
     }
@@ -28,8 +29,6 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View z = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        data = getArguments().getString("data");
-        Log.d("DashboardFragment", " data: "+data);
 
         Button b = z.findViewById(R.id.timetableButton);
         b.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +50,7 @@ public class DashboardFragment extends Fragment {
     }
     public void goToTimetable(){
         Intent it = new Intent(getContext(), Timetable.class);
+
         //it.putExtra("data", data);
         startActivity(it);
     }

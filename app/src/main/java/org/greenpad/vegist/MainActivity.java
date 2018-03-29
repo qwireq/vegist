@@ -53,17 +53,7 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
                     searchText.setVisibility(View.GONE);
                     fr.setVisibility(View.VISIBLE);
 
-                    JSONArray array = cd.getData();
-
-
-                    Bundle bundle = new Bundle();
-
-                    bundle.putString("data", array.toString());
-                    // set Fragmentclass Arguments
-                    DashboardFragment dashboardFragment = new DashboardFragment();
-                    dashboardFragment.setArguments(bundle);
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, dashboardFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new DashboardFragment()).commit();
 
                     return true;
                 //If Courses Clicked
@@ -139,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements CourseFragment.On
         fr.setVisibility(View.GONE);
         mTextMessage.setVisibility(View.VISIBLE);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragplace, new HomeFragment()).commit();
+        bn.setSelectedItemId(R.id.navigation_home);
         CourseRetriever cr = new CourseRetriever(this);
         cr.execute("foo");
 

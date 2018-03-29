@@ -1,8 +1,10 @@
 package org.greenpad.vegist;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -38,6 +40,7 @@ public class Timetable extends AppCompatActivity {
     // representing an object in the collection.
     private PagerAdapter mCollectionPagerAdapter;
     private ViewPager mViewPager;
+    private Timetable this_activity;
     private android.support.v7.widget.Toolbar mToolbar;
     private ListView ListView;
     private TimetableListViewAdapter adapter;
@@ -58,43 +61,42 @@ public class Timetable extends AppCompatActivity {
         loadingView.startAnimation();
 
 
-        new Thread(new Runnable(){
-            public void run() {
-                // do something here
-                while(cd==null);
 
-                Log.d(TAG, "Loading finished");
-                String jsonArray = getIntent().getStringExtra("data");
-                JSONArray js = null;
+
+
+        Log.d(TAG, "Loading finished");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String jsonArray = preferences.getString("data", "");
+        JSONArray js = null;
+        try {
+            js = new JSONArray(jsonArray);
+            coursesList = new ArrayList<>();
+            String s="";
+            for(int i = 0; i < js.length(); i++) {
                 try {
-                    js = new JSONArray(jsonArray);
-                    coursesList = new ArrayList<>();
-                    String s="";
-                    for(int i = 0; i < js.length(); i++) {
-                        try {
-                            s = js.getJSONObject(i).getString("TITLE");
-                            coursesList.add(s);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    loadingView.setVisibility(View.INVISIBLE);
-                    mViewPager.setVisibility(View.VISIBLE);
-                    Log.d("Timetable", String.valueOf(coursesList.size()));
-                    // ViewPager and its adapters use support library
-                    // fragments, so use getSupportFragmentManager.
-                    mCollectionPagerAdapter =
-                            new PagerAdapter( getSupportFragmentManager(), 12, coursesList);
-
-                    mViewPager.setAdapter(mCollectionPagerAdapter);
-
-
+                    s = js.getJSONObject(i).getString("TITLE");
+                    coursesList.add(s);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
-        }).start();
+            loadingView.setVisibility(View.INVISIBLE);
+            mViewPager.setVisibility(View.VISIBLE);
+            Log.d("Timetable", String.valueOf(coursesList.size()));
+            // ViewPager and its adapters use support library
+            // fragments, so use getSupportFragmentManager.
+            mCollectionPagerAdapter =
+                    new PagerAdapter( getSupportFragmentManager(), 12, coursesList);
+
+            mViewPager.setAdapter(mCollectionPagerAdapter);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
 
         mToolbar = findViewById(R.id.timetableToolbar);
 
@@ -113,9 +115,6 @@ public class Timetable extends AppCompatActivity {
 
 
 
-    }
-    public void setDB(CourseDatabase cd){
-        this.cd = cd;
     }
 }
 

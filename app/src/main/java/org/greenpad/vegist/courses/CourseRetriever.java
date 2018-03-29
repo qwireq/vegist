@@ -1,6 +1,8 @@
 package org.greenpad.vegist.courses;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
@@ -12,7 +14,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.greenpad.vegist.DashboardFragment;
 import org.greenpad.vegist.MainActivity;
+import org.greenpad.vegist.R;
 import org.json.JSONArray;
 
 /**
@@ -84,10 +88,20 @@ public class CourseRetriever extends AsyncTask<String, String, JSONArray> {
 
     protected void onPostExecute(JSONArray data){
 
-        myContext.cd = new CourseDatabase(data);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(myContext);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("data", data.toString());
+        editor.apply();
+        try {
+            myContext.cd = new CourseDatabase(new JSONArray(preferences.getString("data", "")));
+        }catch (Exception e){
+            Log.e("DATA_PARSING", e.toString());
+        }
+
         myContext.fr.setVisibility(View.VISIBLE);
         myContext.bn.setVisibility(View.VISIBLE);
         myContext.mTextMessage.setVisibility(View.GONE);
+
 
     }
 }
