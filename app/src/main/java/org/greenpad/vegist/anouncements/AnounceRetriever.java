@@ -44,7 +44,6 @@ public class AnounceRetriever extends AsyncTask<String, Void, JSONArray> {
                 Elements titles = elem.select(".views-field-title a");
                 Element a_title = titles.first();
                 String url = "https://registrar.nu.edu.kz"+a_title.attr("href");
-                url = url.replace("\\/", "/");
                 jo.put("url", url);
                 jo.put("title", a_title.text());
 
@@ -68,7 +67,12 @@ public class AnounceRetriever extends AsyncTask<String, Void, JSONArray> {
     @Override
     protected void onPostExecute(JSONArray jsonArray) {
         super.onPostExecute(jsonArray);
-        Log.e("JSON", jsonArray.toString());
+        try {
+            Log.e("JSON", jsonArray.getJSONObject(0).getString("url"));
+        } catch (Exception x){
+            x.printStackTrace();
+        }
+
         calledActivity.onAnounceLoaded(jsonArray);
 
     }

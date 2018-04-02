@@ -1,5 +1,7 @@
 package org.greenpad.vegist.anouncements;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,6 +43,14 @@ public class AnounceActivity extends AppCompatActivity implements AnounceFragmen
 
     @Override
     public void onListFragmentInteraction(JSONObject object) {
-        Log.e("ANONCLICK", object.toString());
+        String url = "null";
+        try {
+            url = object.getString("url");
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
+        }catch (Exception x){
+            x.printStackTrace();
+        }
+        Log.e("URL", url);
     }
 }

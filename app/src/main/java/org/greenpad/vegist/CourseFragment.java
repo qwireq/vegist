@@ -1,4 +1,4 @@
-package org.greenpad.vegist.courses;
+package org.greenpad.vegist;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.greenpad.vegist.R;
+import org.greenpad.vegist.courses.CourseRecyclerViewAdapter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

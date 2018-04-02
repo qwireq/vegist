@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="org.greenpad.vegist.Timetable">
+    tools:context="org.greenpad.vegist.timetable.Timetable">
 
     <android.support.v7.widget.Toolbar
         android:layout_weight="10"

@@ -1,6 +1,5 @@
-package org.greenpad.vegist;
+package org.greenpad.vegist.timetable;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +13,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.greenpad.vegist.R;
+import org.greenpad.vegist.timetable.TimetableListViewAdapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;

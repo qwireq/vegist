@@ -6,16 +6,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        tools:replace = "android:icon"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -28,8 +27,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".courses.CourseActivity" />
-        <activity android:name=".Timetable" />
-        <activity android:name=".anouncements.AnounceActivity"></activity>
+        <activity android:name=".timetable.Timetable" />
+        <activity android:name=".anouncements.AnounceActivity" />
+        <activity android:name=".anouncements.AnonWebViewActivity"></activity>
     </application>
 
 </manifest>

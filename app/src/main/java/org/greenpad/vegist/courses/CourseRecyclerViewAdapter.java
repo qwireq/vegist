@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenpad.vegist.CourseFragment;
 import org.greenpad.vegist.R;
 import org.json.JSONArray;
 import org.json.JSONObject;

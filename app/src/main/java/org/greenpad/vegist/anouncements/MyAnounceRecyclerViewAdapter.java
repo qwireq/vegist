@@ -35,8 +35,10 @@ public class MyAnounceRecyclerViewAdapter extends RecyclerView.Adapter<MyAnounce
             holder.mItem = mValues.getJSONObject(position);
             holder.mIdView.setText(mValues.getJSONObject(position).getString("date"));
             holder.mContentView.setText(mValues.getJSONObject(position).getString("title"));
+            holder.urlView.setText(mValues.getJSONObject(position).getString("url"));
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
+
+            holder.mView.findViewById(R.id.more_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (null != mListener) {
@@ -46,6 +48,8 @@ public class MyAnounceRecyclerViewAdapter extends RecyclerView.Adapter<MyAnounce
                     }
                 }
             });
+
+
         }catch (Exception e){
             Log.e("MyANON", e.toString());
         }
@@ -61,6 +65,7 @@ public class MyAnounceRecyclerViewAdapter extends RecyclerView.Adapter<MyAnounce
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final TextView urlView;
         public JSONObject mItem;
 
         public ViewHolder(View view) {
@@ -68,6 +73,7 @@ public class MyAnounceRecyclerViewAdapter extends RecyclerView.Adapter<MyAnounce
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
+            urlView = (TextView) view.findViewById(R.id.a_url);
         }
 
         @Override

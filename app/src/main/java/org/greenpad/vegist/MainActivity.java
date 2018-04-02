@@ -16,16 +16,10 @@ import android.widget.TextView;
 
 import org.greenpad.vegist.courses.CourseActivity;
 import org.greenpad.vegist.courses.CourseDatabase;
-import org.greenpad.vegist.courses.CourseFragment;
 import org.greenpad.vegist.courses.CourseRetriever;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements CourseFragment.OnListFragmentInteractionListener{
 
