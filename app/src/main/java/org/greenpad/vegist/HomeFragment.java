@@ -1,5 +1,7 @@
 package org.greenpad.vegist;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,9 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONObject;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class HomeFragment extends Fragment {
@@ -25,6 +30,12 @@ public class HomeFragment extends Fragment {
     public TextView year;
     public TextView admission;
     public JSONObject user;
+    public Button logout_button;
+
+    SharedPreferences authPref;
+    SharedPreferences.Editor authEdit;
+
+
 
 
     public HomeFragment() {
@@ -51,6 +62,10 @@ public class HomeFragment extends Fragment {
         s_id = view.findViewById(R.id.stud_id);
         year = view.findViewById(R.id.year);
         admission = view.findViewById(R.id.admission);
+        logout_button = view.findViewById(R.id.logout_btn);
+
+        authPref = this.getActivity().getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        authEdit = authPref.edit();
 
         Log.e("RES2", json + " hasdasdsad");
 
@@ -75,9 +90,30 @@ public class HomeFragment extends Fragment {
         }
 
 
+        logout_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                goToLoginActivity();
+            }
+        });
+
+
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    public void goToLoginActivity(){
+        Intent it = new Intent(getContext(), LoginActivity.class);
+
+
+        authEdit.putInt("isLogged", 0);
+        authEdit.putString("res", "");
+        authEdit.commit();
+
+        startActivity(it);
+        getActivity().finish();
+
     }
 
 }

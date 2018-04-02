@@ -2,7 +2,6 @@ package org.greenpad.vegist;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,16 +30,19 @@ public class LoginActivity extends AppCompatActivity {
     Button sign_in;
     TextView err;
     RequestQueue requestQueue;
-    SharedPreferences sharedPref = null;
+    SharedPreferences authPref;
+    SharedPreferences.Editor authEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        this.sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        int isLogged = sharedPref.getInt("isLogged", 0);
-        String strRes = sharedPref.getString("res", "");
+        authPref = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        authEdit = authPref.edit();
+
+        int isLogged = authPref.getInt("isLogged", 0);
+        String strRes = authPref.getString("res", "");
 
         if (isLogged == 1) {
             //user is logged in
@@ -89,10 +91,10 @@ public class LoginActivity extends AppCompatActivity {
                                                 mainInt.putExtra("data", res.getString("data"));
 
                                                 // sharedPref
-                                                SharedPreferences.Editor prefEditor = sharedPref.edit();
-                                                prefEditor.putInt("isLogged", 1);
-                                                prefEditor.putString("res", res.getString("data"));
-                                                prefEditor.commit();
+
+                                                authEdit.putInt("isLogged", 1);
+                                                authEdit.putString("res", res.getString("data"));
+                                                authEdit.commit();
                                                 // end of sharedPref
 
                                                 startActivity(mainInt);
