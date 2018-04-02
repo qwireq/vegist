@@ -2,6 +2,7 @@ package org.greenpad.vegist;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        this.sharedPref = getSharedPreferences("data", MODE_PRIVATE);
+        this.sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         int isLogged = sharedPref.getInt("isLogged", 0);
         String strRes = sharedPref.getString("res", "");
 
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                                             JSONObject res = new JSONObject(response);
                                             if (res.getBoolean("ok")) {
                                                 System.out.println("Sucess!");
+                                                //Log.e("DATA", response);
                                                 email.setText("");
                                                 pword.setText("");
                                                 err.setText("");

@@ -49,7 +49,7 @@
         android:padding="3dp"
         android:hint="Enter your email"
         android:textColorHint="#5e5e5e"
-        android:text="paulabest@norali.com"
+        android:text="haydencombs@exerta.com"
         android:textColor="#000000"
         android:maxLines="1"
 

@@ -1,16 +1,255 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.greenpad.vegist.HomeFragment"
-    android:background="#ffffff">
+<ScrollView android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_home_fragment"
+        tools:context="org.greenpad.vegist.HomeFragment"
+        android:background="#ffffff">
 
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-</FrameLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/prof_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:background="#1565C0"/>
+
+              <de.hdodenhof.circleimageview.CircleImageView
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:id="@+id/profile_image"
+                  android:layout_width="120dp"
+                  android:layout_height="120dp"
+                  android:layout_centerHorizontal="true"
+                  android:layout_centerVertical="true"
+                  android:src="@drawable/profile" />
+
+                <TextView
+                    android:id="@+id/prof_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Raiymbek Mustazhapov"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:layout_alignBottom="@+id/prof_back"
+                    android:padding="@dimen/text_margin"/>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+                <ImageView
+                    android:id="@+id/gpa_i"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/ic_poll_black_24dp"
+                    />
+
+                <TextView
+                    android:id="@+id/gpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="3.35"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:padding="4dp"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/gpa_i" />
+
+                <ImageView
+                    android:id="@+id/courses_i"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@drawable/ic_school_black_24dp"
+                    android:layout_toRightOf="@id/gpa" />
+
+                <TextView
+                    android:id="@+id/courses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="16"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:padding="4dp"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/courses_i" />
+
+                <ImageView
+                    android:id="@+id/closed_i"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/ic_done_all_black_24dp"
+                    android:layout_toRightOf="@id/courses"
+                    android:layout_marginLeft="25dp"/>
+
+                <TextView
+                    android:id="@+id/closed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="138"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:padding="4dp"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/closed_i" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Major"
+                android:textAllCaps="true"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto_mediumitalic"/>
+
+            <TextView
+                android:id="@+id/major"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Chemistry"
+                android:textSize="18dp"
+                android:textColor="#111111"
+                android:fontFamily="@font/roboto_light"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Student ID"
+                android:textAllCaps="true"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto_mediumitalic"/>
+
+            <TextView
+                android:id="@+id/stud_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="201317178"
+                android:textSize="18dp"
+                android:textColor="#111111"
+                android:fontFamily="@font/roboto_light"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Year of Study"
+                android:textAllCaps="true"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto_mediumitalic"/>
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="3"
+                android:textSize="18dp"
+                android:textColor="#111111"
+                android:fontFamily="@font/roboto_light"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Admission Year"
+                android:textAllCaps="true"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto_mediumitalic"/>
+
+            <TextView
+                android:id="@+id/admission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Fall 2013"
+                android:textSize="18dp"
+                android:textColor="#111111"
+                android:fontFamily="@font/roboto_light"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+</ScrollView>
