@@ -64,10 +64,10 @@
                 <ImageView
                     android:id="@+id/gpa_i"
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_poll_black_24dp"
-                    />
+                    android:layout_height="40dp"/>
+                   <!-- android:background="@drawable/ic_poll_black_24dp"
 
+                    -->
                 <TextView
                     android:id="@+id/gpa"
                     android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="25dp"
-                    android:background="@drawable/ic_school_black_24dp"
+
                     android:layout_toRightOf="@id/gpa" />
 
                 <TextView
@@ -104,7 +104,7 @@
                     android:id="@+id/closed_i"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/ic_done_all_black_24dp"
+
                     android:layout_toRightOf="@id/courses"
                     android:layout_marginLeft="25dp"/>
 

@@ -46,8 +46,12 @@ public class SemesterFragment extends Fragment{
         mContext = inflater.getContext();
         mRootView = rootView;
 
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+
+        Set<String> completedCourses = sharedPref.getStringSet("Semester"+numOfSemester, new HashSet<String>());
+
         final ListView listView = (ListView) rootView.getChildAt(0);
-        final TimetableListViewAdapter adapter = new TimetableListViewAdapter(mContext, coursesList);
+        final TimetableListViewAdapter adapter = new TimetableListViewAdapter(mContext, coursesList, completedCourses, listView);
 
         listView.setAdapter(adapter);
         Button b = (Button) rootView.getChildAt(1);

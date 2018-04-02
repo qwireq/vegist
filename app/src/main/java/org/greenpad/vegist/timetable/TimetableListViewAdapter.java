@@ -18,6 +18,7 @@ import org.greenpad.vegist.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Dias Issa on 23.03.2018.
@@ -29,29 +30,29 @@ public class TimetableListViewAdapter extends BaseAdapter {
     private ArrayList<String> courseArrayList;
     private ArrayList<String> completeCoursesList;
     private ArrayAdapter<String> adapter;
-    private List<AutoCompleteTextView> completeTextViewList;
     private String TAG = "TimetableAdapter";
+    private ListView listView;
     private int numOfLessons = 5;
 
-    public TimetableListViewAdapter(Context ctx, ArrayList<String> courseArrayList) {
+    public TimetableListViewAdapter(Context ctx, ArrayList<String> courseArrayList, Set<String> completedCourses, ListView listView) {
         this.ctx = ctx;
         this.lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.courseArrayList = courseArrayList;
+        this.listView = listView;
         completeCoursesList = new ArrayList<>();
-        for(int i = 0; i < numOfLessons; i++)completeCoursesList.add("");
+        completeCoursesList.addAll(completedCourses);
+        int n = completeCoursesList.size();
+        for(int i = n; i < numOfLessons; i++)completeCoursesList.add("");
         adapter = new ArrayAdapter<String>(ctx, android.R.layout.select_dialog_singlechoice, courseArrayList);
-        completeTextViewList = new ArrayList<>();
     }
 
     @Override
     public int getCount() {
-        return completeCoursesList.size();
+        return numOfLessons;
     }
 
     @Override
     public Object getItem(int position) {
-
-
         return completeCoursesList.get(position);
     }
 
@@ -66,6 +67,7 @@ public class TimetableListViewAdapter extends BaseAdapter {
         View view = convertView;
         if (view == null) {
             Log.d(TAG, "View is null!!!!");
+            Log.d(TAG, "Position: " + position);
             view = lInflater.inflate(R.layout.timetable_item, parent, false);
             //Find TextView control
             final AutoCompleteTextView acTextView = (AutoCompleteTextView) view;
@@ -73,7 +75,27 @@ public class TimetableListViewAdapter extends BaseAdapter {
             //Set the adapter
             acTextView.setAdapter(adapter);
             acTextView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-            completeTextViewList.add(acTextView);
+            final int firstListItemPosition = listView.getFirstVisiblePosition();
+            final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+            if (position < firstListItemPosition || position > lastListItemPosition ) {
+                if(position < completeCoursesList.size())acTextView.setText((CharSequence) getItem(position));
+            } else {
+                final int childIndex = position - firstListItemPosition;
+                if(childIndex < completeCoursesList.size())acTextView.setText((CharSequence) getItem(childIndex));
+            }
+
+
+        }
+        final AutoCompleteTextView acTextView = (AutoCompleteTextView) view;
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (position < firstListItemPosition || position > lastListItemPosition ) {
+            if(position < completeCoursesList.size())acTextView.setText((CharSequence) getItem(position));
+        } else {
+            final int childIndex = position - firstListItemPosition;
+            if(childIndex < completeCoursesList.size())acTextView.setText((CharSequence) getItem(childIndex));
         }
 
 
