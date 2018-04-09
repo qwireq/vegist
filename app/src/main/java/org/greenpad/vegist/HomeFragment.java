@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
         admission = view.findViewById(R.id.admission);
         logout_button = view.findViewById(R.id.logout_btn);
 
-        authPref = this.getActivity().getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        authPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         authEdit = authPref.edit();
 
         Log.e("RES2", json + " hasdasdsad");
