@@ -10,4 +10,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="major">Major</string>
+    <string name="stud_id">Student ID</string>
+    <string name="stud_year">Year of study</string>
+    <string name="stud_adm_year">Admission year</string>
 </resources>
