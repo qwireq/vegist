@@ -13,6 +13,8 @@
    </ListView>
    <Button
        android:text="Save"
+       android:textColor="@color/White"
+       android:background="#1565C0"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_weight="10"

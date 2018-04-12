@@ -11,6 +11,8 @@
     <Button
         android:id="@+id/timetableButton"
         android:text="GoTO Timetable"
+        android:background="#1565C0"
+        android:textColor="@color/White"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -18,6 +20,8 @@
 
     <Button
         android:id="@+id/a_button"
+        android:background="#1565C0"
+        android:textColor="@color/White"
         android:layout_gravity="center_vertical"
         android:text="GoTO Anouncements"
         android:layout_width="match_parent"
