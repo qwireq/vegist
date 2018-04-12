@@ -9,8 +9,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="major">Твоя судьба</string>
-    <string name="stud_id">Номерочек</string>
-    <string name="stud_year">Год отсидки</string>
-    <string name="stud_adm_year">Когда загремел</string>
+    <string name="stud_id">ИН номер</string>
+    <string name="stud_year">Курс</string>
+    <string name="stud_adm_year">Год поступления</string>
+    <string name="major">Основной предмет</string>
 </resources>
