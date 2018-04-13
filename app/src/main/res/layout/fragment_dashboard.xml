@@ -10,7 +10,7 @@
     <!-- TODO: Update blank fragment layout -->
     <Button
         android:id="@+id/timetableButton"
-        android:text="GoTO Timetable"
+        android:text="Timetable"
         android:background="#1565C0"
         android:textColor="@color/White"
         android:layout_width="match_parent"
@@ -23,9 +23,29 @@
         android:background="#1565C0"
         android:textColor="@color/White"
         android:layout_gravity="center_vertical"
-        android:text="GoTO Anouncements"
+        android:text="Anouncements"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/send_to_adv"
+        android:background="#1565C0"
+        android:textColor="@color/White"
+        android:layout_gravity="center_vertical"
+        android:text="Send to advisor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"/>
+
+    <Button
+        android:id="@+id/gpa_calc"
+        android:background="#1565C0"
+        android:textColor="@color/White"
+        android:layout_gravity="center_vertical"
+        android:text="GPA Calculator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"/>
 
 </FrameLayout>
